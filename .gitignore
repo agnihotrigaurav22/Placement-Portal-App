@@ -1,0 +1,25 @@
+# Environments
+venv/
+env/
+.env
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# SQLite databases
+*.db
+instance/
+ppa_database.db
+celerybeat-schedule.db
+
+# Flask
+.flaskenv
+
+# macOS
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/

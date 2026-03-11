@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Portal Application</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+            <div class="container-fluid">
+                <router-link class="navbar-brand fw-bold" to="/">PPA</router-link>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item" v-if="role === 'admin'">
+                            <router-link class="nav-link" to="/admin/dashboard">Admin Dashboard</router-link>
+                        </li>
+                        <li class="nav-item" v-if="role === 'admin'">
+                            <router-link class="nav-link" to="/admin/companies">Manage Companies</router-link>
+                        </li>
+                        <li class="nav-item" v-if="role === 'admin'">
+                            <router-link class="nav-link" to="/admin/students">Manage Students</router-link>
+                        </li>
+                        <li class="nav-item" v-if="role === 'admin'">
+                            <router-link class="nav-link" to="/admin/drives">Manage Drives</router-link>
+                        </li>
+
+                        <li class="nav-item" v-if="role === 'company'">
+                            <router-link class="nav-link" to="/company/dashboard">Company Dashboard</router-link>
+                        </li>
+                        <li class="nav-item" v-if="role === 'company'">
+                            <router-link class="nav-link" to="/company/drives">Manage Drives</router-link>
+                        </li>
+
+                        <li class="nav-item" v-if="role === 'student'">
+                            <router-link class="nav-link" to="/student/dashboard">Student Dashboard</router-link>
+                        </li>
+                        <li class="nav-item" v-if="role === 'student'">
+                            <router-link class="nav-link" to="/student/drives">Placement Drives</router-link>
+                        </li>
+                        <li class="nav-item" v-if="role === 'student'">
+                            <router-link class="nav-link" to="/student/applications">My Applications</router-link>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item" v-if="!isAuthenticated">
+                            <router-link class="nav-link" to="/login">Login</router-link>
+                        </li>
+                        <li class="nav-item" v-if="!isAuthenticated">
+                            <router-link class="nav-link" to="/register">Register</router-link>
+                        </li>
+                        <li class="nav-item d-flex align-items-center me-3" v-if="isAuthenticated">
+                            <span class="text-white opacity-75 small fw-bold">{{ userName }}</span>
+                        </li>
+                        <li class="nav-item" v-if="isAuthenticated">
+                            <button class="btn btn-outline-light py-1 px-3" @click="logout" style="margin-top: 2px;">Logout</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="container mt-4">
+            <router-view></router-view>
+        </main>
+    </div>
+
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- Vue and Vue Router Global Builds -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue-router@4.2.5/dist/vue-router.global.js"></script>
+
+    <script src="/static/app.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
